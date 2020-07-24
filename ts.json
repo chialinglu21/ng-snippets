@@ -1,0 +1,17 @@
+{
+	"password": {
+		"prefix": "lyPassword",
+		"body": [
+			"password = new FormControl('', [",
+			"  Validators.required,",
+			"  Validators.minLength(8),",
+			"  Validators.maxLength(63),",
+			"  Validators.pattern('^[\\u0020-\\u007e\\u00a0-\\u00ff]*$'),",
+			"]);",
+			"",
+			"passwordHide = true;",
+			""
+		],
+		"description": "password"
+	}
+}

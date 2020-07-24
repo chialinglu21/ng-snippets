@@ -1,0 +1,36 @@
+{
+	"slideToggleWithButton": {
+		"prefix": "lySlideToggleWithButton",
+		"body": [
+			".slide-toggle-with-button {",
+			"  display: flex;",
+			"  margin-top: 20px;",
+			"  flex-direction: row;",
+			"  align-items: center;",
+			"",
+			"  .mat-icon-button {",
+			"    margin-left: 4px;",
+			"  }",
+			"}",
+			""
+		],
+		"description": "slideToggleWithButton"
+	},
+	"stepperHorizontal": {
+		"prefix": "lyStepperHorizontal",
+		"body": [
+			"$stepper-content-min-height: 375px;",
+			"",
+			".tp-stepper {",
+			"  &__step {",
+			"    &__content {",
+			"      display: flex;",
+			"      min-height: $stepper-content-min-height;",
+			"    }",
+			"  }",
+			"}",
+			""
+		],
+		"description": "stepperHorizontal"
+	}
+}
