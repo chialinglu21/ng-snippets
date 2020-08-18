@@ -1,17 +1,85 @@
 {
-	"password": {
-		"prefix": "lyPassword",
-		"body": [
-			"password = new FormControl('', [",
-			"  Validators.required,",
-			"  Validators.minLength(8),",
-			"  Validators.maxLength(63),",
-			"  Validators.pattern('^[\\u0020-\\u007e\\u00a0-\\u00ff]*$'),",
-			"]);",
-			"",
-			"passwordHide = true;",
-			""
-		],
-		"description": "password"
-	}
+  "password": {
+    "prefix": "lyPassword",
+    "body": [
+      "password = new FormControl('', [",
+      "  Validators.required,",
+      "  Validators.minLength(8),",
+      "  Validators.maxLength(63),",
+      "  Validators.pattern('^[\\u0020-\\u007e\\u00a0-\\u00ff]*$'),",
+      "]);",
+      "",
+      "passwordHide = true;",
+      ""
+    ],
+    "description": "password"
+  },
+  "initService": {
+    "prefix": "lyInitService",
+    "body": [
+      "/****** before Class *******/",
+      "const initState: object = {};",
+      "",
+      "let _state: object = { ...initState };",
+      "",
+      "@Injectable({",
+      "  providedIn: 'root'",
+      "})",
+      "",
+      "/****** in Class *******/",
+      "//   constructor(private restService: TpRestService, private tpToastrService: TpToastrService) {}",
+      "//   constructor(private restService: TpRestService, private tpToastrService: TpToastrService, private socketService: TpWebSocketService, private authService: AuthService) {}",
+      "//   constructor(private restService: TpRestService, private tpToastrService: TpToastrService, private sseService: TpSseService) {}",
+      "  private PATH = '';",
+      "  private store = new BehaviorSubject<object>(_state);",
+      "  state$ = this.store.asObservable();",
+      "",
+      "  feature$: Observable<object> = this.restService.get(this.PATH).pipe();",
+      "",
+      "//   Sse$ = this.sseService.create(this.PATH).pipe();",
+      "",
+      "//   websocket$ = this.authService.websocketToken$.pipe(",
+      "//     switchMap(({ token }) =>",
+      "//       this.socketService.initialize(",
+      "//         `/tags/monitor/system/network?token=${token}`",
+      "//       )",
+      "//     )",
+      "//   );",
+      "",
+      "",
+      "  dipatchState = {",
+      "    wifiStateUpdating: () => this.updateState({ ..._state, isLoading: '' }),",
+      "  };",
+      "",
+      "  updateState(newValue: object) {",
+      "    this.store.next((_state = newValue));",
+      "  }",
+      "",
+      "  private handelError(toastrMsg, error) {",
+      "    this.tpToastrService.error(toastrMsg);",
+      "    this.updateState({ ..._state, isLoading: '' });",
+      "    return throwError(error);",
+      "  }"
+    ],
+    "description": "initService"
+  },
+  "tpPasswordStrength": {
+    "prefix": "lyTpPasswordStrength",
+    "body": [
+      "    // passwordStrength: TpPasswordStrength;",
+      "    // constructor(private service: TpChangePasswordService) {}",
+      "    const init = this.service.initPasswordStrength;",
+      "    this.passwordStrength = {",
+      "      ...init,",
+      "      // 想改變條件或文句",
+      "      atLeastCharachter: { enable: true, displayText: '至少要有10個字元', minLimitation: 10 },",
+      "      atLeastDigitCharachter: { enable: true, displayText: '至少要有1個數字', minLimitation: 1 },",
+      "      atLeastSpecialCharachter: { enable: true, displayText: '至少要有2個特殊字元', minLimitation: 2 },",
+      "      // 想打開/關閉驗證而已",
+      "      atLeastLowerCharacter: { ...init.atLeastLowerCharacter, enable: true },",
+      "      atLeastUpperCharachter: { ...init.atLeastUpperCharachter, enable: true }",
+      "    };"
+    ],
+    "description": "tpPasswordStrength"
+  }
 }

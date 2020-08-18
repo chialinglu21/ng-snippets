@@ -1,36 +1,84 @@
 {
-	"slideToggleWithButton": {
-		"prefix": "lySlideToggleWithButton",
-		"body": [
-			".slide-toggle-with-button {",
-			"  display: flex;",
-			"  margin-top: 20px;",
-			"  flex-direction: row;",
-			"  align-items: center;",
-			"",
-			"  .mat-icon-button {",
-			"    margin-left: 4px;",
-			"  }",
-			"}",
-			""
-		],
-		"description": "slideToggleWithButton"
-	},
-	"stepperHorizontal": {
-		"prefix": "lyStepperHorizontal",
-		"body": [
-			"$stepper-content-min-height: 375px;",
-			"",
-			".tp-stepper {",
-			"  &__step {",
-			"    &__content {",
-			"      display: flex;",
-			"      min-height: $stepper-content-min-height;",
-			"    }",
-			"  }",
-			"}",
-			""
-		],
-		"description": "stepperHorizontal"
-	}
+  "slideToggleWithButton": {
+    "prefix": "lySlideToggleWithButton",
+    "body": [
+      ".slide-toggle-with-button {",
+      "  display: flex;",
+      "  margin-top: 20px;",
+      "  flex-direction: row;",
+      "  align-items: center;",
+      "",
+      "  .mat-icon-button {",
+      "    margin-left: 4px;",
+      "  }",
+      "}",
+      ""
+    ],
+    "description": "slideToggleWithButton"
+  },
+  "stepperHorizontal": {
+    "prefix": "lyStepperHorizontal",
+    "body": [
+      "$stepper-content-min-height: 375px;",
+      "",
+      ".tp-stepper {",
+      "  &__step {",
+      "    &__content {",
+      "      display: flex;",
+      "      min-height: $stepper-content-min-height;",
+      "    }",
+      "  }",
+      "}",
+      ""
+    ],
+    "description": "stepperHorizontal"
+  },
+  "initTheme": {
+    "prefix": "lyInitTheme",
+    "body": [
+      "@import 'tp-theme';",
+      "",
+      "@mixin __name__-theme($theme) {",
+      "  $is-dark: map-get($theme, is-dark);",
+      "  @if $is-dark == false {",
+      "    // Light Theme",
+      "  } @else {",
+      "    // Dark Theme",
+      "  }",
+      "}",
+      ""
+    ],
+    "description": "initTheme"
+  },
+  "useTheme": {
+    "prefix": "lyUseTheme",
+    "body": [
+      "@import 'tp-theme';",
+      "// @import '../../styles';",
+      "",
+      ":host(.tp-dark-theme) {",
+      "  // @include __name__-theme($tp-app-dark-theme);",
+      "}",
+      "// @include __name__-theme($tp-app-theme);"
+    ],
+    "description": "useTheme"
+  },
+  "password": {
+    "prefix": "lyPassword",
+    "body": [
+      ".password-field {",
+      "  .mat-icon-button {",
+      "    width: 40px;",
+      "    height: 40px;",
+      "",
+      "    .mat-icon {",
+      "      width: 24px;",
+      "      height: 24px;",
+      "    }",
+      "  }",
+      "}",
+      ""
+    ],
+    "description": "password"
+  }
 }
