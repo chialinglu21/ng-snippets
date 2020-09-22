@@ -81,5 +81,115 @@
       "    };"
     ],
     "description": "tpPasswordStrength"
+  },
+  "initComponentsIndex": {
+    "prefix": "lyInitComponentsIndex",
+    "body": ["export const components: any[] = [];"],
+    "description": "initComponentsIndex"
+  },
+  "initContainersIndex": {
+    "prefix": "lyInitContainersIndex",
+    "body": ["export const containers: any[] = [];"],
+    "description": "initContainersIndex"
+  },
+  "initRoutingModule": {
+    "prefix": "lyInitRoutingModule",
+    "body": [
+      "import { RouterModule, Routes } from '@angular/router';",
+      "",
+      "const routes: Routes = [",
+      "  {",
+      "    path: '',",
+      "    //component: yourComponent ",
+      "  }",
+      "];",
+      "",
+      "@NgModule({",
+      "  imports: [RouterModule.forChild(routes)],",
+      "  exports: [RouterModule]",
+      "})",
+      ""
+    ],
+    "description": "initRoutingModule"
+  },
+  "initResolver": {
+    "prefix": "lyInitResolver",
+    "body": [
+      "@Injectable({",
+      "  providedIn: 'root'",
+      "})",
+      "export class YourPageResolver implements Resolve<Observable<any>> {",
+      "  constructor(private service: YourePageService, private store: Store) {}",
+      "",
+      "  resolve(): Observable<any> {",
+      "    this.store.dispatch(fromAppActions.pageLoading({ isPageLoading: true }));",
+      "",
+      "    const pageState$ = this.service.dataYouWantToGet$.pipe(",
+      "      take(1),",
+      "      tap(data => {",
+      "        // do something, like dispatch",
+      "      }),",
+      "      catchError(error => {",
+      "        this.store.dispatch(fromAppRouterActions.go({ payload: { path: ['/500'] } }));",
+      "        return EMPTY;",
+      "      }),",
+      "      finalize(() => this.store.dispatch(fromAppActions.pageLoadingCompletion({ isPageLoading: false })))",
+      "    );",
+      "",
+      "    return pageState$;",
+      "  }",
+      "}"
+    ],
+    "description": "initResolver"
+  },
+  "initComponentStore": {
+    "prefix": "lyInitComponentStore",
+    "body": [
+      "@Injectable()",
+      "export class YourFeatureStore extends ComponentStore<YourState> {",
+      "  ",
+      "  constructor() {",
+      "    /** Put initial data to state */",
+      "    // super({movies: []});",
+      "  }",
+      "}"
+    ],
+    "description": "initComponentStore"
+  },
+  "initStore": {
+    "prefix": "lyInitStore",
+    "body": [
+      "import { Injectable } from '@angular/core';",
+      "import { ComponentStore } from '@ngrx/component-store';",
+      "",
+      "@Injectable({ providedIn: 'any' })",
+      "export class __YourStore__Store extends ComponentStore<__YourState__> {",
+      "  constructor() {",
+      "    super();",
+      "  }",
+      "  // readonly dosDefenseState$: Observable<DosDefenseState> = this.select((state) => state);",
+      "",
+      "  // readonly setLoading = this.updater((state, value: boolean) => ({ ...state, isLoading: value }));",
+      "",
+      "  // readonly applyDosDefense = this.effect((value: Observable<DosDefenseItem[]>) =>",
+      "  //   value.pipe(",
+      "  //     switchMap((newValue) =>",
+      "  //       this.dosService.patchDosDefense$(newValue).pipe(",
+      "  //         tap((t) => {",
+      "  //           this.updateDosDefense(t);",
+      "  //           this.toastrService.success('DoS Defense Setting Success.');",
+      "  //         }),",
+      "  //         catchError((e) => {",
+      "  //           this.toastrService.error('DoS Defense Setting Fail.');",
+      "  //           return throwError(e);",
+      "  //         })",
+      "  //       )",
+      "  //     )",
+      "  //   )",
+      "  // );",
+      "}",
+      ""
+    ],
+    "description": "initStore"
   }
 }
