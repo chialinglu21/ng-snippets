@@ -36,14 +36,17 @@
   "initTheme": {
     "prefix": "lyInitTheme",
     "body": [
-      "@import 'tp-theme';",
+      "@use 'sass:map';",
+      "@use '../base/colors';",
       "",
       "@mixin __name__-theme($theme) {",
       "  $is-dark: map-get($theme, is-dark);",
-      "  @if $is-dark == false {",
-      "    // Light Theme",
-      "  } @else {",
+      "",
+      "  // Light Theme",
+      "  $color-theme: colors.$mx-light;",
+      "  @if $is-dark {",
       "    // Dark Theme",
+      "    $color-theme: colors.$mx-dark;",
       "  }",
       "}",
       ""

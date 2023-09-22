@@ -131,8 +131,8 @@
   "pageWrapper": {
     "prefix": "lyPageWrapper",
     "body": [
-      "<div class=\"page-content-wrapper\">",
-      "  <h5 class=\"page-header gl-h5\">",
+      "<div>",
+      "  <h5 class=\"gl-page-header gl-h5\">",
       "    <!-- Title -->",
       "  </h5>",
       "  <tp-breadcrumb tpTheme></tp-breadcrumb>",
@@ -459,5 +459,18 @@
       ""
     ],
     "description": "tpExpansionPanel"
+  },
+  "select": {
+    "prefix": "lySelect",
+    "body": [
+      "        <mat-form-field floatLabel=\"always\" hideRequiredMarker=\"true\">",
+      "          <mat-select formControlName=\"__controlName__\" [placeholder]=\"'selection name'\">",
+      "            <mat-option value=\"1\">option1</mat-option>",
+      "            <mat-option value=\"2\">option2</mat-option>",
+      "          </mat-select>",
+      "          <mat-error *ngIf=\"protocolCtrl.hasError('required')\">{{ t('input-required-error') }}</mat-error>",
+      "        </mat-form-field>"
+    ],
+    "description": "select"
   }
 }
